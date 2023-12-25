@@ -7,8 +7,6 @@
 """
 Description: 
 PSPire is a machine learning model based on integrated residue-level and structure-level features to predict phase-separating proteins.
-This code default use the model without the Phos feature. However, users have the option to switch to the PhosModel by providing phos feature data. 
-The Human_proteome_PSPs_potential.xls and the Mouse_proteome_PSPs_potential.xls files under the data folder of PSPire software package recorded phase separation potentials of proteins in human and mouse proteome predicted by the PhosModel and noPhosModel, respectively.
 
 Usage: -u/-f/-p/-d are required and you can only specify one of them.
 1. ${SOFTWAREPATH}/PSPire.py -u P09651
@@ -168,13 +166,14 @@ def get_lists():
         else:
             raise_error(f'{args.pdbfile} is not in valid pdb format.')
     else:
-        out = run_cmd('ls '+os.path.join(args.directory, '*pdb'), 'result')
-        if len(out) == 0:
+        ori_files = [os.path.join(args.directory, f) for f in os.listdir(args.directory) if os.path.isfile(os.path.join(args.directory, f)) and f.endswith('.pdb')]
+        # out = run_cmd('ls '+os.path.join(args.directory, '*pdb'), 'result')
+        if len(ori_files) == 0:
             raise_error(f'There is no pdb file under the specified directory: {args.directory}')
         else:
-            tmpfiles = out.split('\n')
-            ori_files = tmpfiles
-            for i in tmpfiles:
+            # tmpfiles = out.split('\n')
+            # ori_files = tmpfiles
+            for i in ori_files:
                 if check_pdb_format(i):
                     inputfiles.append(i)
                 else:
