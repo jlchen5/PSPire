@@ -1,5 +1,7 @@
 # PSPire
 
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0) [![Version: 1.0.0](https://img.shields.io/badge/Version-1.0.0-brightgreen.svg)](https://www.gnu.org/licenses/gpl-3.0)
+
 PSPire is a machine learning model based on integrated residue-level and structure-level features to predict phase-separating proteins. It is written in Python3 and is available as a command line tool.
 
 # Requirements
