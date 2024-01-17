@@ -4,64 +4,75 @@
 
 PSPire is a machine learning model based on integrated residue-level and structure-level features to predict phase-separating proteins. It is written in Python3 and is available as a command line tool.
 
-# Requirements
+# Installation
 
-PSPire requires Python (version 3.x.x).
+## Installation using Conda
 
-# Setup
+1. Create conda environment:
 
-1. Install [DSSP](https://github.com/PDB-REDO/dssp). Conda installation is recommended:
-
-   ```shell
-   $ conda install -c salilab dssp
+   ```
+   conda create -n PSPire python=3.8
+   conda activate PSPire
    ```
 
-2. Install [Pymol](https://pymol.org) for sticker calculation:
+2. Install [DSSP](https://github.com/PDB-REDO/dssp). Conda installation is recommended:
 
    ```shell
-   $ conda install -c conda-forge -c schrodinger pymol-bundle
+   conda install -c salilab -y dssp=2.2.1
    ```
 
-3. Install the following python package:
+3. Install [Pymol](https://pymol.org) for sticker calculation:
 
    ```shell
-   $ pip install biopython scikit-learn numpy pandas requests
+   conda install -c conda-forge -y pymol-open-source
    ```
 
-   Or
+4. Install the following python package:
 
    ```shell
-   $ conda install -y biopython scikit-learn numpy pandas requests
+   conda install -y xgboost=1.6.2 
+   conda install -y scikit-learn=1.1.2 
+   conda install -y biopython numpy pandas requests
    ```
 
-4. (Optional) The published models of PSPire used PSAIA software to calculate relative solvent accessible surface area (RSA). It is recommended to prepare the running environment for PSAIA. User can first install Singularity and then use Singularity to build a container. If Singularity or the container image is not found, PSPire would use DSSP to calculate RSA.
+5. (Optional) The published models of PSPire used PSAIA software to calculate relative solvent accessible surface area (RSA). It is recommended to prepare the running environment for PSAIA. User can first install Singularity and then use Singularity to build a container. If Singularity or the container image is not found, PSPire would use DSSP to calculate RSA.
 
    + Install [Singularity](https://apptainer.org/admin-docs/master/installation.html#). As Singularity is written primarily in Go, you should install [Go](https://go.dev/doc/install) first. After installation, you can type the command below to check Singularity has been installed successfully.
 
      ```shell
-     $ singularity -h
+     singularity -h
      ```
 
      > Note: you need to use the following command to source the Singularity bash completion file to make sure the usage of bash completion in new shells.
      >
      > ```shell
-     > $ echo ". Singularity_Installation_Path/etc/bash_completion.d/singularity" >> ~/.bashrc  # you should replce Singularity_Installation_Path with your installation path
+     > echo ". Singularity_Installation_Path/etc/bash_completion.d/singularity" >> ~/.bashrc  # you should replce Singularity_Installation_Path with your installation path
      > ```
 
    + Build Qt 4.8.6 libraray container image needed for PSAIA software running:
 
    ```shell
-   $ cd /path/to/PSPire/data
-   $ singularity -d build psaia.simg docker://msoares/qt4-dev
+   cd /path/to/PSPire/data
+   singularity -d build psaia.simg docker://msoares/qt4-dev
    ```
 
-5. Add PSPire to `$PATH`. To enable global access to PSPire from any location on your system, it's recommended to add the PSPire's directory to your system's `$PATH` environment variable. 
+6. Add PSPire to `$PATH`. To enable global access to PSPire from any location on your system, it's recommended to add the PSPire's directory to your system's `$PATH` environment variable. 
 
    ```bash
-   $ chmod o+x /path/to/PSPire/PSPire.py
-   $ echo 'export PATH=/path/to/PSPire:$PATH' >> ~/.bashrc
-   $ source ~/.bashrc
+   chmod o+x /path/to/PSPire/PSPire.py
+   echo 'export PATH=/path/to/PSPire:$PATH' >> ~/.bashrc
+   source ~/.bashrc
    ```
+
+## Installation using docker
+
+1. Pull the PSPire docker image:
+
+   ```shell
+   docker pull houshuang2020/pspire:latest
+   ```
+
+2. Replace the `lib/psaia_run.py` and `PSPire.py` files with the files under the docker_script folder.
 
 # Parameters
 
@@ -118,45 +129,45 @@ Optional parameters:
 1. Specify uniprot ids:
 
    ```shell
-   $ PSPire.py -u P09651
-   $ PSPire.py -u P09651 O00444
+   PSPire.py -u P09651
+   PSPire.py -u P09651 O00444
    ```
 
 2. Specify list file with UniProt IDs or absolute path of protein pdb files:
 
    ```shell
-   $ PSPire.py -f ${SOFTWAREPATH}/demo/PDB_files_list.txt
-   $ PSPire.py -f ${SOFTWAREPATH}/demo/uniprotID_list.txt
+   PSPire.py -f ${SOFTWAREPATH}/demo/PDB_files_list.txt
+   PSPire.py -f ${SOFTWAREPATH}/demo/uniprotID_list.txt
    ```
 
 3. Specify PDB file of a protein:
 
    ```shell
-   $ PSPire.py -p ${SOFTWAREPATH}/demo/AF-A0A2R8QUZ1-F1-model_v2.pdb
+   PSPire.py -p ${SOFTWAREPATH}/demo/AF-A0A2R8QUZ1-F1-model_v2.pdb
    ```
 
 4. Specify absolute directory path of pdb files:
 
    ```shell
-   $ PSPire.py -d ${SOFTWAREPATH}/demo
+   PSPire.py -d ${SOFTWAREPATH}/demo
    ```
 
 5. Ignore intrinsically disordered region(IDR)-related features for proteins with IDRs:
 
    ```shell
-   $ PSPire.py -u P09651 --ignore
+   PSPire.py -u P09651 --ignore
    ```
 
 6. Specified user-defined phosphorylation feature:
 
    ```shell
-   $ PSPire.py -u P09651 -s ${SOFTWAREPATH}/demo/phos_feature_example.csv
+   PSPire.py -u P09651 -s ${SOFTWAREPATH}/demo/phos_feature_example.csv
    ```
 
 7. Use MobiDB-lite software to calculate IDRs:
 
    ```shell
-   $ PSPire.py -u P09651 --mobidb
+   PSPire.py -u P09651 --mobidb
    ```
 
 # Output
