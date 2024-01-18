@@ -73,6 +73,10 @@ PSPire is a machine learning model based on integrated residue-level and structu
    ```
 
 2. Replace the `lib/psaia_run.py` and `PSPire.py` files with the files under the docker_script folder.
+3. Make sure the PSAIA script is executable:
+   ```
+   chmod o+x /path/to/PSPire/software/PSAIA/psa
+   ```
 
 # Parameters
 
