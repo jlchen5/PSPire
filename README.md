@@ -203,3 +203,20 @@ Pre-calculated PSPire predicted scores of the following model organism proteomes
 - [Saccharomyces cerevisiae](https://compbio-zhanglab.org/release/PSPire_scores/Saccharomyces_cerevisiae_scores.csv)
 - [Schizosaccharomyces pombe](https://compbio-zhanglab.org/release/PSPire_scores/Schizosaccharomyces_pombe_scores.csv)
 - [Zea mays](https://compbio-zhanglab.org/release/PSPire_scores/Zea_mays_scores.csv)
+
+## Citing PSPire
+If you use the code or data in this repository, please cite:
+
+```
+@article{Hou2024,
+  author = {Hou, Shuang and Hu, Jiaojiao and Yu, Zhaowei and Li, Dan and Liu, Cong and Zhang, Yong},
+  title = {Machine learning predictor PSPire screens for phase-separating proteins lacking intrinsically disordered regions},
+  journal = {Nature Communications},
+  volume = {15},
+  number = {1},
+  pages = {2147},
+  year = {2024},
+  doi = {10.1038/s41467-024-46445-y},
+  url = {https://doi.org/10.1038/s41467-024-46445-y},
+}
+```
