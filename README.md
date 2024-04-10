@@ -7,7 +7,7 @@ PSPire is a machine learning model based on integrated residue-level and structu
 # Installation
 
 ```bash
-git clone https://github.com/jlchen5/PSPire.git
+git clone https://github.com/TongjiZhanglab/PSPire.git
 ```
 
 ## Installation using Conda
