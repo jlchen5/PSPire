@@ -39,7 +39,7 @@ git clone https://github.com/TongjiZhanglab/PSPire.git
    conda install -y biopython numpy pandas requests
    ```
 
-5. (Optional) The published models of PSPire used PSAIA software to calculate relative solvent accessible surface area (RSA). It is recommended to prepare the running environment for PSAIA. User can first install Singularity and then use Singularity to build a container. If Singularity or the container image is not found, PSPire would use DSSP to calculate RSA.
+5. (Optional) The published models of PSPire used PSAIA software to calculate relative solvent accessible surface area (RSA). It is recommended to prepare the running environment for PSAIA. User can first install Singularity and then use Singularity to build a container. If Singularity or the container image is not found, PSPire would use DSSP to calculate RSA. IMPORTANT NOTE: Singularity has been renamed to Apptainer. This repository is now for archiving the history in the release branches. The master branch is not in a consistent state. Submit all current issues and pull requests to https://github.com/apptainer/apptainer.
 
    + Install [Singularity](https://apptainer.org/admin-docs/master/installation.html#). As Singularity is written primarily in Go, you should install [Go](https://go.dev/doc/install) first. After installation, you can type the command below to check Singularity has been installed successfully.
 
